@@ -7,8 +7,11 @@ import { getPosts } from "../../actions/posts";
 import Form from "../Form/Form";
 import Posts from "../Posts/Posts";
 
+import useStyles from "./styles";
+
 const Home = () => {
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   const [currentId, setCurrentId] = useState(null);
 
@@ -20,6 +23,7 @@ const Home = () => {
     <Grow in>
       <Container>
         <Grid
+          className={classes.mainContainer}
           container
           justify-content="space-between"
           align-items="stretch"
