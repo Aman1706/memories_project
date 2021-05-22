@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// let url = "https://memories-project-aman.herokuapp.com";
-let url = "http://localhost:5000";
+let url = "https://memories-project-aman.herokuapp.com";
+// let url = "http://localhost:5000";
 
 const API = axios.create({ baseURL: url });
 
