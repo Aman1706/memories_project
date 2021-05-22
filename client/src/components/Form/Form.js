@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
+import { useHistory } from "react-router-dom";
 
 import { createPost, updatePost } from "../../actions/posts";
 
@@ -10,6 +10,7 @@ import useStyles from "./styles";
 
 const Form = ({ currentId, setCurrentId }) => {
   const classes = useStyles();
+  const history = useHistory();
   const [postData, setPostData] = useState({
     title: "",
     message: "",
@@ -18,7 +19,7 @@ const Form = ({ currentId, setCurrentId }) => {
   });
   const user = JSON.parse(localStorage.getItem("profile"));
   const post = useSelector((state) =>
-    currentId ? state.posts.find((post) => post._id === currentId) : null
+    currentId ? state.posts.posts.find((post) => post._id === currentId) : null
   );
   const dispatch = useDispatch();
 
@@ -33,7 +34,7 @@ const Form = ({ currentId, setCurrentId }) => {
         updatePost(currentId, { ...postData, name: user?.result?.name })
       );
     } else {
-      dispatch(createPost({ ...postData, name: user?.result?.name }));
+      dispatch(createPost({ ...postData, name: user?.result?.name }, history));
     }
     clear();
   };
@@ -59,7 +60,7 @@ const Form = ({ currentId, setCurrentId }) => {
   }
 
   return (
-    <Paper className={classes.paper}>
+    <Paper className={classes.paper} elevation={6}>
       <form
         autoComplete="off"
         className={`${classes.root} ${classes.form}`}
@@ -122,8 +123,8 @@ const Form = ({ currentId, setCurrentId }) => {
           variant="contained"
           color="secondary"
           size="small"
-          onClick={clear}
           fullWidth
+          onClick={clear}
         >
           Clear
         </Button>
