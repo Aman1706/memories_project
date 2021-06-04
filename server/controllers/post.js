@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import postMessage from "../models/postMessage.js";
-import PostMessage from "../models/postMessage.js";
 
 export const getPosts = async (req, res) => {
   const { page } = req.query;
@@ -9,7 +8,8 @@ export const getPosts = async (req, res) => {
     const startIndex = (Number(page) - 1) * LIMIT;
     const total = await postMessage.countDocuments({});
 
-    const posts = await PostMessage.find()
+    const posts = await postMessage
+      .find()
       .sort({ createdAt: -1 })
       .limit(LIMIT)
       .skip(startIndex);
@@ -29,7 +29,7 @@ export const getPostsBySearch = async (req, res) => {
   try {
     const title = new RegExp(searchQuery, "i");
 
-    const posts = await PostMessage.find({
+    const posts = await postMessage.find({
       $or: [{ title }, { tags: { $in: tags.split(",") } }],
     });
 
@@ -52,7 +52,7 @@ export const getPost = async (req, res) => {
 
 export const createPost = async (req, res) => {
   const post = req.body;
-  const newPost = new PostMessage({
+  const newPost = new postMessage({
     ...post,
     creator: req.userId,
     createdAt: new Date().toISOString(),
@@ -73,7 +73,7 @@ export const updatePost = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(_id))
     return res.status(404).send("No Post with that id");
 
-  const updatedPost = await PostMessage.findByIdAndUpdate(
+  const updatedPost = await postMessage.findByIdAndUpdate(
     _id,
     { ...post, _id },
     {
@@ -90,7 +90,7 @@ export const deletePost = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send("No Post with that id");
 
-  await PostMessage.findByIdAndRemove(id);
+  await postMessage.findByIdAndRemove(id);
 
   res.json({ message: "Post Deleted Successfully" });
 };
