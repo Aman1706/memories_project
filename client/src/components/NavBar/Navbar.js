@@ -10,9 +10,8 @@ import useStyles from "./styles";
 import memoriesLogo from ".././../images/memories-Logo.png";
 import memoriesText from ".././../images/memories-Text.png";
 
-const NavBar = () => {
+const NavBar = ({ user, setUser }) => {
   const classes = useStyles();
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();

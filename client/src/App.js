@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "@material-ui/core";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
@@ -8,11 +8,11 @@ import Auth from "./components/Auth/Auth";
 import PostDetails from "./components/PostDetails/PostDetails";
 
 const App = () => {
-  const user = JSON.parse(localStorage.getItem("profile"));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   return (
     <Container maxWidth="xl">
       <BrowserRouter>
-        <NavBar />
+        <NavBar user={user} setUser={setUser} />
         <Switch>
           <Route path="/" exact component={() => <Redirect to="/posts" />} />
           <Route path="/posts" exact component={Home} />
