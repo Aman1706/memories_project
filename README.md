@@ -12,4 +12,4 @@ Users can search posts by name or by using the hashtags.
 
 Pagination has also been implemented for easier viewing.
 
-On click on invidual posts, users will also be able to see related posts(Done based on the hastgags used).
+On click on invidual posts, users will also be able to see related posts(Done based on the hashtags used).
