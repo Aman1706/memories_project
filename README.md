@@ -16,3 +16,5 @@ On click of individual posts, users will also be able to see related posts(Done 
 
 Languages/Packages Used : React.js, React Router DOM, Redux, Redux Thunk, React file
 base 64, Node.js, Express.js, MongoDB, JWT, BcryptJS, Sweet Alert 2, Material UI etc.
+
+Front end section of the app is deployed in netlify while as the backend section is deployed in heroku.
