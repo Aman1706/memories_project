@@ -18,3 +18,5 @@ Languages/Packages Used : React.js, React Router DOM, Redux, Redux Thunk, React 
 base 64, Node.js, Express.js, MongoDB, JWT, BcryptJS, Sweet Alert 2, Material UI etc.
 
 Front end section of the app is deployed in netlify while as the backend section is deployed in heroku.
+
+The MongoDB database is hosted in the MongoDB Atlas Server
